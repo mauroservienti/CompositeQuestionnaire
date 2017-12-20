@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ITOps", "ITOps", "{9BB9D85E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{D2D190E6-0C82-43AE-ABA1-4DA5E58508AD}"
 	ProjectSection(SolutionItems) = preProject
+		scripts\Create-Tables.sql = scripts\Create-Tables.sql
 		scripts\Setup-Databases.sql = scripts\Setup-Databases.sql
 		scripts\Setup-LocalDBInstance.ps1 = scripts\Setup-LocalDBInstance.ps1
 		scripts\Teardown-Databases.sql = scripts\Teardown-Databases.sql
@@ -22,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{D2D1
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questions.Api", "Questions.Api\Questions.Api.csproj", "{9584E3E8-4DF6-49FD-BBF8-0D7BB7B46C23}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Answers.Api", "Answers.Api\Answers.Api.csproj", "{95B85742-AE8E-4E5D-80C4-BACAE4D50903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +52,10 @@ Global
 		{9584E3E8-4DF6-49FD-BBF8-0D7BB7B46C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9584E3E8-4DF6-49FD-BBF8-0D7BB7B46C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9584E3E8-4DF6-49FD-BBF8-0D7BB7B46C23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B85742-AE8E-4E5D-80C4-BACAE4D50903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B85742-AE8E-4E5D-80C4-BACAE4D50903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B85742-AE8E-4E5D-80C4-BACAE4D50903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B85742-AE8E-4E5D-80C4-BACAE4D50903}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
