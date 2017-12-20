@@ -1,0 +1,115 @@
+﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
+
+namespace Questions.Api.Controllers
+{
+    [Route("api/questions")]
+    public class QuestionsController : Controller
+    {
+        readonly string connectionString = null;
+        public QuestionsController(IConfiguration configuration)
+        {
+            connectionString = configuration["connection-string"];
+        }
+
+        [HttpGet]
+        public IEnumerable<dynamic> Get()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var questions = connection.Query<Models.Question>
+                (
+                    @"select QuestionId, QuestionText 
+                        from [Questions] as o
+                        where Version = 
+                        (
+                            select max(i.[Version]) 
+                            from [Questions] as i where i.QuestionId = o.QuestionId
+                        )"
+                );
+
+                return questions;
+            }
+        }
+
+        [HttpPut]
+        public dynamic Put(Models.NewQuestion question)
+        {
+            var requestId = Request.Headers["request-id"].Single();
+            var questionId = Guid.NewGuid();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Execute
+                (
+                    @"insert into [Questions]
+                        ([QuestionId]
+                        ,[RequestId]
+                        ,[Version]
+                        ,[QuestionText])
+                    values
+                        (@QuestionId
+                        ,@RequestId
+                        ,@Version
+                        ,@QuestionText)",
+                    new
+                    {
+                        QuestionId = questionId,
+                        RequestId = requestId,
+                        Version = DateTimeOffset.Now.Ticks,
+                        question.QuestionText
+                    }
+                );
+
+                return new
+                {
+                    QuestionId = questionId,
+                    RequestId = requestId
+                };
+            }
+        }
+
+        [HttpPost]
+        public dynamic Post(Models.EditQuestion question)
+        {
+            var requestId = Request.Headers["request-id"].Single();
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                //should validate data already exists
+
+                connection.Execute
+                (
+                    @"insert into [Questions]
+                        ([QuestionId]
+                        ,[RequestId]
+                        ,[Version]
+                        ,[QuestionText])
+                    values
+                        (@QuestionId
+                        ,@RequestId
+                        ,@Version
+                        ,@QuestionText)",
+                    new
+                    {
+                        question.QuestionId,
+                        RequestId = requestId,
+                        Version = DateTimeOffset.Now.Ticks,
+                        question.QuestionText
+                    }
+                );
+
+                return new
+                {
+                    question.QuestionId,
+                    RequestId = requestId
+                };
+            }
+        }
+    }
+}

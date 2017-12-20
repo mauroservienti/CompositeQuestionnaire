@@ -30,7 +30,10 @@ powershell -NoProfile -ExecutionPolicy unrestricted -File scripts\Setup-LocalDBI
 
 When you no longer need to run the exercises, you may optionally run `Teardown-LocalDBInstance.ps1`.
 
-Now connect to your `LocalDB` instance and run `scripts\Setup-Databases.sql`.
+Now connect to your `LocalDB` instance and run:
+
+* `scripts\Setup-Databases.sql`.
+* `scripts\Create-Tables.sql`
 
 You can do this using either SQL Server Management Studio (if you already have it installed) or Visual Studio. If using Visual Studio:
 
@@ -39,6 +42,7 @@ You can do this using either SQL Server Management Studio (if you already have i
 - Choose this instance: Local -> CompositeQuestionnaire
 - Click "Connect"
 - After the query has run, ensure that you see "Command(s) completed successfully."
+- Do the same for `scripts\Create-Tables.sql`
 
 ## NServiceBus configuration
 

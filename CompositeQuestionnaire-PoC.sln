@@ -13,6 +13,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ITOps.ViewModelComposition.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ITOps", "ITOps", "{9BB9D85E-B103-4CB8-B6A9-56B12EF4E3BB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{D2D190E6-0C82-43AE-ABA1-4DA5E58508AD}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\Setup-Databases.sql = scripts\Setup-Databases.sql
+		scripts\Setup-LocalDBInstance.ps1 = scripts\Setup-LocalDBInstance.ps1
+		scripts\Teardown-Databases.sql = scripts\Teardown-Databases.sql
+		scripts\Teardown-LocalDBInstance.ps1 = scripts\Teardown-LocalDBInstance.ps1
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questions.Api", "Questions.Api\Questions.Api.csproj", "{9584E3E8-4DF6-49FD-BBF8-0D7BB7B46C23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +45,10 @@ Global
 		{2BB41EB5-5BFD-48FA-990E-2E5DFD9E9238}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BB41EB5-5BFD-48FA-990E-2E5DFD9E9238}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BB41EB5-5BFD-48FA-990E-2E5DFD9E9238}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9584E3E8-4DF6-49FD-BBF8-0D7BB7B46C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9584E3E8-4DF6-49FD-BBF8-0D7BB7B46C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9584E3E8-4DF6-49FD-BBF8-0D7BB7B46C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9584E3E8-4DF6-49FD-BBF8-0D7BB7B46C23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
