@@ -55,8 +55,6 @@ namespace Answers.Api.Controllers
                 {
                     foreach (var answer in answers)
                     {
-                        var answerId = Guid.NewGuid();
-
                         connection.Execute
                         (
                             @"insert into [Answers]
@@ -73,7 +71,7 @@ namespace Answers.Api.Controllers
                             ,@AnswerText)",
                             param: new
                             {
-                                AnswerId = answerId,
+                                answer.AnswerId,
                                 answer.QuestionId,
                                 RequestId = requestId,
                                 Version = DateTimeOffset.Now.Ticks,
@@ -84,7 +82,7 @@ namespace Answers.Api.Controllers
 
                         results.Add(new
                         {
-                            AnswerId = answerId,
+                            answer.AnswerId,
                             RequestId = requestId
                         });
                     }
