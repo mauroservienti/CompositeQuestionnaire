@@ -41,7 +41,6 @@ namespace Questions.Api.Controllers
         public dynamic Put(Models.NewQuestion question)
         {
             var requestId = Request.Headers["request-id"].Single();
-            var questionId = Guid.NewGuid();
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -59,7 +58,7 @@ namespace Questions.Api.Controllers
                         ,@QuestionText)",
                     new
                     {
-                        QuestionId = questionId,
+                        question.QuestionId,
                         RequestId = requestId,
                         Version = DateTimeOffset.Now.Ticks,
                         question.QuestionText
@@ -68,7 +67,7 @@ namespace Questions.Api.Controllers
 
                 return new
                 {
-                    QuestionId = questionId,
+                    question.QuestionId,
                     RequestId = requestId
                 };
             }
