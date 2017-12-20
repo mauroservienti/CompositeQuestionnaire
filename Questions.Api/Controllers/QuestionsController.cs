@@ -38,12 +38,13 @@ namespace Questions.Api.Controllers
         }
 
         [HttpPut]
-        public dynamic Put(Models.NewQuestion question)
+        public dynamic Put([FromBody]Models.NewQuestion question)
         {
-            var requestId = Request.Headers["request-id"].Single();
+            var requestId = Request.Headers["composed-request-id"].Single();
 
             using (var connection = new SqlConnection(connectionString))
             {
+                connection.Open();
                 connection.Execute
                 (
                     @"insert into [Questions]
@@ -64,22 +65,23 @@ namespace Questions.Api.Controllers
                         question.QuestionText
                     }
                 );
-
-                return new
-                {
-                    question.QuestionId,
-                    RequestId = requestId
-                };
             }
+
+            return new
+            {
+                question.QuestionId,
+                RequestId = requestId
+            };
         }
 
         [HttpPost]
         public dynamic Post(Models.EditQuestion question)
         {
-            var requestId = Request.Headers["request-id"].Single();
+            var requestId = Request.Headers["composed-request-id"].Single();
 
             using (var connection = new SqlConnection(connectionString))
             {
+                connection.Open();
                 //should validate data already exists
 
                 connection.Execute
