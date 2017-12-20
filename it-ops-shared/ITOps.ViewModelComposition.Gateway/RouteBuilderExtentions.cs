@@ -121,13 +121,13 @@ namespace ITOps.ViewModelComposition.Gateway
 
         static async Task HandleRequest(HttpContext context)
         {
-            var requestId = context.Request.Headers.ContainsKey("request-id")
-                ? context.Request.Headers["request-id"].Single()
+            var requestId = context.Request.Headers.ContainsKey("composed-request-id")
+                ? context.Request.Headers["composed-request-id"].Single()
                 : Guid.NewGuid().ToString();
 
             var result = await CompositionHandler.HandleRequest(requestId, context);
 
-            context.Response.Headers.Add("request-id", requestId);
+            context.Response.Headers.Add("composed-request-id", requestId);
 
             if (result.StatusCode == StatusCodes.Status200OK)
             {

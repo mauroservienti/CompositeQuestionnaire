@@ -20,8 +20,8 @@ namespace ITOps.ViewModelComposition.Mvc
 
         public async Task OnResultExecutionAsync(ResultExecutingContext context, ResultExecutionDelegate next)
         {
-            var requestId = context.HttpContext.Request.Headers.ContainsKey("request-id")
-                ? context.HttpContext.Request.Headers["request-id"].Single()
+            var requestId = context.HttpContext.Request.Headers.ContainsKey("composed-request-id")
+                ? context.HttpContext.Request.Headers["composed-request-id"].Single()
                 : Guid.NewGuid().ToString();
 
             (var viewModel, var statusCode) = await CompositionHandler.HandleRequest(requestId, context.HttpContext);
@@ -44,7 +44,7 @@ namespace ITOps.ViewModelComposition.Mvc
                 defaultHandler();
             }
 
-            context.HttpContext.Response.Headers.Add("request-id", requestId);
+            context.HttpContext.Response.Headers.Add("composed-request-id", requestId);
 
             await next();
 
