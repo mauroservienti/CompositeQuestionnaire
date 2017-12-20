@@ -6,6 +6,6 @@ namespace Rules.Api.Models
     {
         public Guid RuleId { get; set; }
         public Guid QuestionId { get; set; }
-        public Guid AnswerId { get; set; }
+        public Guid CorrectAnswerId { get; set; }
     }
 }

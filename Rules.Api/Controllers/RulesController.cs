@@ -9,46 +9,49 @@ using System.Linq;
 namespace Rules.Api.Controllers
 {
     [Route("api/rules")]
-    public class AnswersController : Controller
+    public class RulesController : Controller
     {
         readonly string connectionString = null;
-        public AnswersController(IConfiguration configuration)
+        public RulesController(IConfiguration configuration)
         {
             connectionString = configuration["connection-string"];
         }
 
         [HttpGet]
-        public IEnumerable<dynamic> Get(Guid questionId)
+        public IEnumerable<dynamic> Get(string questionIds)
         {
+            var questionGuids = questionIds.Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).Select(s => Guid.Parse(s)).ToArray();
+
             using (var connection = new SqlConnection(connectionString))
             {
-                var answers = connection.Query<Models.CorrectAnswerRule>
+                var rules = connection.Query<Models.CorrectAnswerRule>
                 (
-                    @"select RuleId, CorrectAnswerId
+                    @"select RuleId, CorrectAnswerId, QuestionId
                         from [CorrectAnswerRules] as o
                         where Version = 
                         (
-                            select max(i.[CorrectAnswerRules]) 
-                            from [Answers] as i where i.RuleId = o.RuleId
-                        )and QuestionId = @questionId",
+                            select max(i.[Version]) 
+                            from [CorrectAnswerRules] as i where i.RuleId = o.RuleId
+                        )and QuestionId in @questionIds",
                     param: new
                     {
-                        questionId
+                        questionIds = questionGuids
                     }
                 );
 
-                return answers;
+                return rules;
             }
         }
 
         [HttpPut]
-        public IEnumerable<dynamic> Put(Models.NewCorrectAnswerRule[] rules)
+        public IEnumerable<dynamic> Put([FromBody]Models.NewCorrectAnswerRule[] rules)
         {
-            var requestId = Request.Headers["request-id"].Single();
+            var requestId = Request.Headers["composed-request-id"].Single();
             var results = new List<dynamic>();
 
             using (var connection = new SqlConnection(connectionString))
             {
+                connection.Open();
                 using (var tx = connection.BeginTransaction())
                 {
                     foreach (var rule in rules)
@@ -99,11 +102,12 @@ namespace Rules.Api.Controllers
         [HttpPost]
         public IEnumerable<dynamic> Post(Models.EditCorrectAnswerRule[] rules)
         {
-            var requestId = Request.Headers["request-id"].Single();
+            var requestId = Request.Headers["composed-request-id"].Single();
             var results = new List<dynamic>();
 
             using (var connection = new SqlConnection(connectionString))
             {
+                connection.Open();
                 using (var tx = connection.BeginTransaction())
                 {
                     foreach (var rule in rules)
