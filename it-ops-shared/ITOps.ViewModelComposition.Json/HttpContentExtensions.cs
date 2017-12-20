@@ -13,10 +13,10 @@ namespace ITOps.Json
             Converters = new List<JsonConverter> { new PascalCaseExpandoObjectConverter() }
         };
 
-        public static async Task<ExpandoObject> AsExpandoAsync(this HttpContent content)
+        public static async Task<ExpandoObject> AsExpando(this HttpContent content)
             => JsonConvert.DeserializeObject<ExpandoObject>(await content.ReadAsStringAsync(), serializerSettings);
 
-        public static async Task<ExpandoObject[]> AsExpandoArrayAsync(this HttpContent content)
+        public static async Task<ExpandoObject[]> AsExpandoArray(this HttpContent content)
             => JsonConvert.DeserializeObject<ExpandoObject[]>(await content.ReadAsStringAsync(), serializerSettings);
     }
 }
