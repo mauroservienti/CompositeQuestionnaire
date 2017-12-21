@@ -1,8 +1,8 @@
 (function () {
     angular.module('app.controllers')
         .controller('newQuestionController',
-        ['$log', 'endpoints.config', '$http', '$state',
-            function ($log, config, $http, $state) {
+        ['$log', 'endpoints.config', '$http', '$state', 'uniqueIndentifiersService',
+            function ($log, config, $http, $state, uniqueIndentifiers) {
 
                 var ctrl = this;
 
@@ -12,16 +12,9 @@
                 ctrl.answers = [];
                 ctrl.correctAnswerId = '';
 
-                var getNewGuid = function () {
-                    return $http.get(config.localApiUrl + '/UniqueIndentifiers/NewGuid')
-                        .then(function (response) {
-                            return response.data.uniqueIndentifier;
-                        })
-                };
-
                 ctrl.addAnswer = function () {
 
-                    ctrl.isLoading = getNewGuid()
+                    ctrl.isLoading = uniqueIndentifiers.newGuid()
                         .then(function (guid) {
 
                             ctrl.answers.push({
@@ -54,7 +47,7 @@
                         })
                 };
 
-                ctrl.isLoading = getNewGuid()
+                ctrl.isLoading = uniqueIndentifiers.newGuid()
                     .then(function (guid) {
                         ctrl.questionId = guid;
 

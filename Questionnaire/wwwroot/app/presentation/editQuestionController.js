@@ -1,8 +1,8 @@
 (function () {
     angular.module('app.controllers')
         .controller('editQuestionController',
-        ['$log', 'endpoints.config', '$http', '$state', 'question',
-            function ($log, config, $http, $state, question) {
+        ['$log', 'endpoints.config', '$http', '$state', 'question', 'uniqueIndentifiersService',
+            function ($log, config, $http, $state, question, uniqueIndentifiers) {
 
                 $log.debug('question', question);
 
@@ -24,16 +24,9 @@
 
                 ctrl.correctAnswerId = question.rule.correctAnswerId;
 
-                var getNewGuid = function () {
-                    return $http.get(config.localApiUrl + '/UniqueIndentifiers/NewGuid')
-                        .then(function (response) {
-                            return response.data.uniqueIndentifier;
-                        })
-                };
-
                 ctrl.addAnswer = function () {
 
-                    ctrl.isLoading = getNewGuid()
+                    ctrl.isLoading = uniqueIndentifiers.newGuid()
                         .then(function (guid) {
 
                             ctrl.answers.push({
