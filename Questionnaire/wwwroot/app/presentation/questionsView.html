@@ -1,13 +1,16 @@
 <section cg-busy="ctrl.isLoading">
-    Questions
+    <h1>Questions</h1>
 
     <div>
         <button class="btn btn-info" ng-click="ctrl.refreshQuestions()">Refresh</button>
         <a class="btn btn-info" role="button" ui-sref="addNewQuestion">Create new question...</a>
     </div>
 
+    <hr/>
+
     <ul style="list-style: none;">
         <li data-ng-repeat="question in ctrl.questions track by question.questionId">
+            <a ui-sref="editQuestion({ questionId: question.questionId })">Edit...</a>
             <span>Question: {{question.questionText}}</span>
             <ul>
                 <li data-ng-repeat="answer in question.answers track by answer.answerId">
@@ -15,6 +18,7 @@
                     <span ng-show="answer.answerId == question.correctAnswerId"><strong>[correct-one]</strong></span>
                 </li>
             </ul>
+            <hr />
         </li>
     </ul>
 
