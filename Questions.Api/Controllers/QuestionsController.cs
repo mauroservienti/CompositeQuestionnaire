@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Questions.Api.Controllers
 {
@@ -22,6 +23,7 @@ namespace Questions.Api.Controllers
         {
             using (var connection = new SqlConnection(connectionString))
             {
+                connection.Open();
                 var questions = connection.Query<Models.Question>
                 (
                     @"select QuestionId, QuestionText 
@@ -34,6 +36,32 @@ namespace Questions.Api.Controllers
                 );
 
                 return questions;
+            }
+        }
+
+        [HttpGet, Route("{id}")]
+        public async Task<dynamic> Get(Guid id)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                var question = await connection.QuerySingleAsync<Models.Question>
+                (
+                    @"select QuestionId, QuestionText 
+                        from [Questions] as o
+                        where Version = 
+                        (
+                            select max(i.[Version]) 
+                            from [Questions] as i where i.QuestionId = o.QuestionId
+                        )
+                        and QuestionId = @questionId",
+                    param: new
+                    {
+                        questionId = id
+                    }
+                );
+
+                return question;
             }
         }
 
