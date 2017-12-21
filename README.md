@@ -1,5 +1,30 @@
 # Composite Questionnaire PoC
 
+A microservices powered Questionnaire sample - Based on SOA Principles and messaging using NServiceBus.
+
+This sample aims to demonstrate how to compose, and de-compose, data owned by different services in order to display data to end users and allow users to manipulate data.
+
+The application allows to create a very basic questionnaire, where each question can have multiple answers, one of which can be marked as the correct answer.
+
+Currently supported features:
+
+* Display list of questions
+* Create a new question (via composite PUT support)
+
+Partially supported features:
+
+* Edit an existing question:
+  * UI is complete
+  * composite POST support is missing
+
+Not (yet) supported features:
+
+* Delete questions
+* Multiple questionnaires
+* Reorder questions
+* Reorder answers
+* Ability to execute questionnaire and store results
+
 ## How to get the sample working locally
 
 ### Get a copy of this repository
