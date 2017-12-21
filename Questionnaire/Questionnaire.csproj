@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <None Include="wwwroot\app\app.js" />
-    <None Include="wwwroot\app\presentation\questionsController.js" />
-    <None Include="wwwroot\app\presentation\questionsView.html" />
+    <None Include="wwwroot\app\modules\questions\questionsController.js" />
+    <None Include="wwwroot\app\modules\questions\questionsView.html" />
     <None Include="wwwroot\app\routingConfig.js" />
     <None Include="wwwroot\assets\site.css" />
     <None Include="wwwroot\index.html" />

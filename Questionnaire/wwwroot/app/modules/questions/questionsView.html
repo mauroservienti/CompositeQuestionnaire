@@ -1,0 +1,15 @@
+<section cg-busy="ctrl.isLoading">
+    <h1>Questions</h1>
+
+    <div>
+        <button class="btn btn-info" ng-click="ctrl.refreshQuestions()">Refresh</button>
+        <a class="btn btn-info" role="button" ui-sref="addNewQuestion">Create new question...</a>
+    </div>
+
+    <hr/>
+
+    <questions-list questions="ctrl.questions" />
+
+    <error-viewer error="{{ctrl.loadError}}" />
+
+</section>

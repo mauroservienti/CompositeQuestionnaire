@@ -1,0 +1,6 @@
+﻿<ul>
+    <li data-ng-repeat="answer in question.answers track by answer.answerId">
+        <span>Answer: {{answer.answerText}}</span>
+        <span ng-show="answer.answerId == question.correctAnswerId"><strong>[correct-one]</strong></span>
+    </li>
+</ul>

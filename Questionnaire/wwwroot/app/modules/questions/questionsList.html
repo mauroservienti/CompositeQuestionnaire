@@ -1,0 +1,8 @@
+﻿<ul style="list-style: none;">
+    <li data-ng-repeat="question in questions track by question.questionId">
+        <a ui-sref="editQuestion({ questionId: question.questionId })">Edit...</a>
+        <span>Question: {{question.questionText}}</span>
+        <question-answers-list question="question" />
+        <hr />
+    </li>
+</ul>

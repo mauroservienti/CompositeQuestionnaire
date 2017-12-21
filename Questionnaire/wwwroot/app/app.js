@@ -5,13 +5,15 @@
 
     angular.module('app.controllers', []);
     angular.module('app.services', []);
+    angular.module('app.directives', []);
 
     var app = angular.module('app', [
         'ngRoute',
         'ui.router',
         'cgBusy',
         'app.controllers',
-        'app.services'
+        'app.services',
+        'app.directives'
     ]);
 
     angular.module('app.services')
