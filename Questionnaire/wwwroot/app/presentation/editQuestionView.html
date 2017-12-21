@@ -1,0 +1,31 @@
+﻿<section cg-busy="ctrl.isLoading">
+
+    <h1>Edit questions</h1>
+
+    <form name="edit-question">
+
+        <div class="form-group">
+            <label for="Question">Question</label>
+            <input type="text" class="form-control" id="Question" placeholder="Enter question text" ng-model="ctrl.questionText">
+        </div>
+
+        <hr />
+
+        <button ng-click="ctrl.addAnswer()">Add answer</button>
+
+        <hr />
+
+        <ul style="list-style: none;">
+            <li ng-repeat="answer in ctrl.answers track by answer.answerId">
+                <input type="text" class="form-control" id="answer-{{answer.answerId}}" placeholder="Enter answer text" ng-model="answer.answerText">
+                <div><input type="radio" name="correct-answer" id="correct-answer-{{answer.answerId}}" ng-value="'{{answer.answerId}}'" class="form-check-input" ng-model="ctrl.correctAnswerId"> mark as correct answer</div>
+                <hr />
+            </li>
+        </ul>
+
+        <hr />
+
+        <button ng-click="ctrl.saveQuestion()">Save</button>
+    </form>
+
+</section>

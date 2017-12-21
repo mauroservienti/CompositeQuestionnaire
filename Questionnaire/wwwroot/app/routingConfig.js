@@ -33,6 +33,25 @@
                                 controllerAs: 'ctrl'
                             }
                         }
+                    })
+                    .state('editQuestion', {
+                        url: 'questions/edit/:questionId',
+                        views: {
+                            '': {
+                                templateUrl: '/app/presentation/editQuestionView.html',
+                                controller: 'editQuestionController',
+                                controllerAs: 'ctrl',
+                                resolve: {
+                                    question: ['$stateParams', '$http', '$log', 'endpoints.config', function ($stateParams, $http, $log, config) {
+                                        var url = config.gatewayBaseUrl + '/questions/' + $stateParams.questionId;
+                                        return $http.get(url)
+                                            .then(function (response) {
+                                                return response.data;
+                                            })
+                                    }]
+                                }
+                            }
+                        }
                     });
 
             }]);
