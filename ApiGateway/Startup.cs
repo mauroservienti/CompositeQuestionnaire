@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NServiceBus.Extensions;
 using System.Threading.Tasks;
 
 namespace ApiGateway
@@ -17,6 +18,7 @@ namespace ApiGateway
             services.AddRouting();
             services.AddViewModelComposition();
             services.AddCors();
+            services.AddNServiceBus(endpointName: "Api.Gateway");
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

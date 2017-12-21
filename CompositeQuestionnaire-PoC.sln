@@ -28,7 +28,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Answers.Api", "Answers.Api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rules.Api", "Rules.Api\Rules.Api.csproj", "{82354F81-8093-406C-9688-B91557674984}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionnaire", "Questionnaire\Questionnaire.csproj", "{5D4F898A-374C-4B99-A0FD-6FB8169520C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questionnaire", "Questionnaire\Questionnaire.csproj", "{5D4F898A-374C-4B99-A0FD-6FB8169520C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rules", "Rules", "{DD6BB3C1-98D8-4653-A473-7B3FF6D69023}"
 EndProject
@@ -36,15 +36,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Answers", "Answers", "{CC94
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Questions", "Questions", "{EB46FE9E-8B0B-4E79-B3DE-D526B4EE9BF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{288D5C20-A08D-44BC-A757-F0A4F986D7BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{288D5C20-A08D-44BC-A757-F0A4F986D7BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questions.ViewModelComposition", "Questions.ViewModelComposition\Questions.ViewModelComposition.csproj", "{B1039958-9405-47F6-9EA7-82BB4BE6184D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questions.ViewModelComposition", "Questions.ViewModelComposition\Questions.ViewModelComposition.csproj", "{B1039958-9405-47F6-9EA7-82BB4BE6184D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Answers.ViewModelComposition", "Answers.ViewModelComposition\Answers.ViewModelComposition.csproj", "{90B3DEEB-3CDA-44A8-8440-A25991F710C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Answers.ViewModelComposition", "Answers.ViewModelComposition\Answers.ViewModelComposition.csproj", "{90B3DEEB-3CDA-44A8-8440-A25991F710C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rules.ViewModelComposition", "Rules.ViewModelComposition\Rules.ViewModelComposition.csproj", "{6C69A20F-CEDA-4658-B8AA-FA051CCF6B53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rules.ViewModelComposition", "Rules.ViewModelComposition\Rules.ViewModelComposition.csproj", "{6C69A20F-CEDA-4658-B8AA-FA051CCF6B53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questions.ViewModelComposition.Events", "Questions.ViewModelComposition.Events\Questions.ViewModelComposition.Events.csproj", "{964AB8B5-7448-483B-818D-CC2C1E11A77A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questions.ViewModelComposition.Events", "Questions.ViewModelComposition.Events\Questions.ViewModelComposition.Events.csproj", "{964AB8B5-7448-483B-818D-CC2C1E11A77A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.Extensions", "NServiceBus.Extensions\NServiceBus.Extensions.csproj", "{E7F317BF-1399-4CF7-B4F2-5D279C76CCE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questions.Messages", "Questions.Messages\Questions.Messages.csproj", "{A035DF90-BF00-4909-81C4-7B376660FF15}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Answers.Messages", "Answers.Messages\Answers.Messages.csproj", "{B973FCDE-2A7B-4A52-8F24-F7763CC2FB8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rules.Messages", "Rules.Messages\Rules.Messages.csproj", "{8984E2F1-62BF-4127-AF16-006851452C27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -104,6 +112,22 @@ Global
 		{964AB8B5-7448-483B-818D-CC2C1E11A77A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{964AB8B5-7448-483B-818D-CC2C1E11A77A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{964AB8B5-7448-483B-818D-CC2C1E11A77A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7F317BF-1399-4CF7-B4F2-5D279C76CCE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7F317BF-1399-4CF7-B4F2-5D279C76CCE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7F317BF-1399-4CF7-B4F2-5D279C76CCE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7F317BF-1399-4CF7-B4F2-5D279C76CCE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A035DF90-BF00-4909-81C4-7B376660FF15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A035DF90-BF00-4909-81C4-7B376660FF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A035DF90-BF00-4909-81C4-7B376660FF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A035DF90-BF00-4909-81C4-7B376660FF15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B973FCDE-2A7B-4A52-8F24-F7763CC2FB8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B973FCDE-2A7B-4A52-8F24-F7763CC2FB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B973FCDE-2A7B-4A52-8F24-F7763CC2FB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B973FCDE-2A7B-4A52-8F24-F7763CC2FB8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8984E2F1-62BF-4127-AF16-006851452C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8984E2F1-62BF-4127-AF16-006851452C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8984E2F1-62BF-4127-AF16-006851452C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8984E2F1-62BF-4127-AF16-006851452C27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +144,9 @@ Global
 		{90B3DEEB-3CDA-44A8-8440-A25991F710C4} = {CC94B35E-E1AF-4B4A-97B8-30AFC28F6D4B}
 		{6C69A20F-CEDA-4658-B8AA-FA051CCF6B53} = {DD6BB3C1-98D8-4653-A473-7B3FF6D69023}
 		{964AB8B5-7448-483B-818D-CC2C1E11A77A} = {EB46FE9E-8B0B-4E79-B3DE-D526B4EE9BF4}
+		{A035DF90-BF00-4909-81C4-7B376660FF15} = {EB46FE9E-8B0B-4E79-B3DE-D526B4EE9BF4}
+		{B973FCDE-2A7B-4A52-8F24-F7763CC2FB8B} = {CC94B35E-E1AF-4B4A-97B8-30AFC28F6D4B}
+		{8984E2F1-62BF-4127-AF16-006851452C27} = {DD6BB3C1-98D8-4653-A473-7B3FF6D69023}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AC00DFE-9B7F-43A9-9712-03DD887B0059}

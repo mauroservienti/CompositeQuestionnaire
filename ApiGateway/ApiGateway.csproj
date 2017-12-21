@@ -18,6 +18,7 @@
     <ProjectReference Include="..\it-ops-shared\ITOps.ViewModelComposition.Gateway\ITOps.ViewModelComposition.Gateway.csproj" />
     <ProjectReference Include="..\it-ops-shared\ITOps.ViewModelComposition.Json\ITOps.ViewModelComposition.Json.csproj" />
     <ProjectReference Include="..\it-ops-shared\ITOps.ViewModelComposition\ITOps.ViewModelComposition.csproj" />
+    <ProjectReference Include="..\NServiceBus.Extensions\NServiceBus.Extensions.csproj" />
     <ProjectReference Include="..\Questions.ViewModelComposition\Questions.ViewModelComposition.csproj" />
     <ProjectReference Include="..\Rules.ViewModelComposition\Rules.ViewModelComposition.csproj" />
   </ItemGroup>

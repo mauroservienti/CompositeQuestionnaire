@@ -13,8 +13,9 @@ bower_cmps/
 applicationhost.config
 .vs/
 
-# NServiceBus Logs
+# NServiceBus
 nsb_log_*.txt
+.learningtransport/
 
 # Build results
 

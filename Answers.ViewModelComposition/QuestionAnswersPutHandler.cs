@@ -1,8 +1,10 @@
-﻿using ITOps.Json;
+﻿using Answers.Messages;
+using ITOps.Json;
 using ITOps.ViewModelComposition;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Newtonsoft.Json;
+using NServiceBus;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -13,6 +15,13 @@ namespace Answers.ViewModelComposition
 {
     public class QuestionAnswersPutHandler : IHandleRequests, IHandleRequestsErrors
     {
+        IMessageSession messageSession;
+
+        public QuestionAnswersPutHandler(IMessageSession messageSession)
+        {
+            this.messageSession = messageSession;
+        }
+
         public bool Matches(RouteData routeData, string httpVerb, HttpRequest request)
         {
             var controller = (string)routeData.Values["controller"];
@@ -55,7 +64,10 @@ namespace Answers.ViewModelComposition
 
         public Task OnRequestError(string requestId, Exception ex, dynamic vm, RouteData routeData, HttpRequest request)
         {
-            return Task.CompletedTask;
+            return messageSession.Send("Answers.Api", new CleanupFailedRequest()
+            {
+                RequestId = requestId
+            });
         }
     }
 }

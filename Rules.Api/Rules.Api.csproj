@@ -8,10 +8,16 @@
     <PackageReference Include="Dapper" Version="1.50.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
+    <PackageReference Include="NServiceBus" Version="7.0.0-beta0012" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NServiceBus.Extensions\NServiceBus.Extensions.csproj" />
+    <ProjectReference Include="..\Rules.Messages\Rules.Messages.csproj" />
   </ItemGroup>
 
 </Project>
