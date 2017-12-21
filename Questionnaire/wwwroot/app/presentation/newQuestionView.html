@@ -1,5 +1,7 @@
 ﻿<section cg-busy="ctrl.isLoading">
 
+    <h1>Create new questions</h1>
+
     <form name="new-question">
 
         <div class="form-group">
@@ -7,7 +9,12 @@
             <input type="text" class="form-control" id="Question" placeholder="Enter question text" ng-model="ctrl.questionText">
         </div>
 
+        <hr />
+
         <button ng-click="ctrl.addAnswer()">Add answer</button>
+
+        <hr />
+
         <ul style="list-style: none;">
             <li ng-repeat="answer in ctrl.answers track by answer.answerId">
                 <input type="text" class="form-control" id="answer-{{answer.answerId}}" placeholder="Enter answer text" ng-model="answer.answerText">
@@ -15,6 +22,8 @@
                 <hr />
             </li>
         </ul>
+
+        <hr />
 
         <button ng-click="ctrl.addNewQuestion()">Save</button>
     </form>
