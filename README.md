@@ -10,6 +10,7 @@ Currently supported features:
 
 * Display list of questions
 * Create a new question (via composite PUT support)
+* Recovery from services failure at write time
 
 Partially supported features:
 
