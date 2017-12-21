@@ -13,7 +13,7 @@
                     ctrl.isLoading = $http.get(config.gatewayBaseUrl + '/questions/')
                         .then(function (response) {
                             ctrl.questions = response.data.questions;
-                            $log.debug('questions', ctrl.questions)
+                            $log.debug('questions', ctrl.questions);
                         })
                         .catch(function (error) {
                             $log.error('Something went wrong: ', error);
