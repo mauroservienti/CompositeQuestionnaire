@@ -21,7 +21,7 @@ namespace ITOps.ViewModelComposition
                 //matching interceptors could be cached by URL
                 var interceptors = context.RequestServices.GetServices<IInterceptRoutes>()
                     .Where(interceptor => interceptor.Matches(routeData, context.Request.Method, context.Request))
-                .ToList();
+                    .ToList();
 
                 foreach (var subscriber in interceptors.OfType<ISubscribeToCompositionEvents>())
                 {
