@@ -49,7 +49,7 @@ namespace Rules.ViewModelComposition
             {
                 Content = new StringContent(JsonConvert.SerializeObject(rules), Encoding.UTF8, "application/json")
             };
-            requestMessage.Headers.Add("composed-request-id", requestId);
+            requestMessage.Headers.AddComposedRequestIdHeader(requestId);
 
             var response = await new HttpClient()
                 .SendAsync(requestMessage);
