@@ -48,7 +48,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questions.ViewModelComposit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.Extensions", "NServiceBus.Extensions\NServiceBus.Extensions.csproj", "{E7F317BF-1399-4CF7-B4F2-5D279C76CCE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questions.Messages", "Questions.Messages\Questions.Messages.csproj", "{A035DF90-BF00-4909-81C4-7B376660FF15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Questions.Messages", "Questions.Messages\Questions.Messages.csproj", "{A035DF90-BF00-4909-81C4-7B376660FF15}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Answers.Messages", "Answers.Messages\Answers.Messages.csproj", "{B973FCDE-2A7B-4A52-8F24-F7763CC2FB8B}"
 EndProject
