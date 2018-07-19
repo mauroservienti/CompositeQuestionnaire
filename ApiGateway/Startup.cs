@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NServiceBus.Extensions;
-using System.Threading.Tasks;
 
 namespace ApiGateway
 {
@@ -38,15 +38,16 @@ namespace ApiGateway
 
             app.RunCompositionGateway(routes =>
             {
-                routes.MapComposableGet(template: "{controller}/{id:guid?}");
-                routes.MapComposablePost(template: "{controller}/{id:guid}");
-                routes.MapComposablePut(template: "{controller}");
-                routes.MapComposableDelete(template: "{controller}/{id:guid}");
-                routes.MapRoute("{*NotFound}", context =>
-                {
-                    context.Response.StatusCode = StatusCodes.Status404NotFound;
-                    return Task.CompletedTask;
-                });
+                routes.MapComposableRoute(
+                    template: "{*CatchAllToAllowNancyStyleHandlers}",
+                    constraints: new RouteValueDictionary(new
+                    {
+                        httpMethod = new HttpMethodRouteConstraint(
+                            HttpMethods.Get,
+                            HttpMethods.Post,
+                            HttpMethods.Put,
+                            HttpMethods.Delete)
+                    }));
             });
         }
     }

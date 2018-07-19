@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ITOps.ViewModelComposition.Modules;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,25 +14,37 @@ namespace ITOps.ViewModelComposition
         {
             var fileNames = Directory.GetFiles(AppContext.BaseDirectory, assemblySearchPattern);
 
-            var types = new List<Type>();
+            var routeInterceptors = new List<Type>();
+            var modules = new List<Type>();
+
             foreach (var fileName in fileNames)
             {
-                var temp = AssemblyLoader.Load(fileName)
-                    .GetTypes()
-                    .Where(t =>
-                    {
-                        var typeInfo = t.GetTypeInfo();
-                        return !typeInfo.IsInterface 
-                            && !typeInfo.IsAbstract 
-                            && typeof(IInterceptRoutes).IsAssignableFrom(t);
-                    });
+                var types = AssemblyLoader.Load(fileName).GetTypes();
+                routeInterceptors.AddRange(types.Where(t =>
+                {
+                    var typeInfo = t.GetTypeInfo();
+                    return !typeInfo.IsInterface
+                        && !typeInfo.IsAbstract
+                        && typeof(IInterceptRoutes).IsAssignableFrom(t);
+                }));
 
-                types.AddRange(temp);
+                modules.AddRange(types.Where(t =>
+                {
+                    var typeInfo = t.GetTypeInfo();
+                    return !typeInfo.IsInterface
+                        && !typeInfo.IsAbstract
+                        && typeof(RequestsModule).IsAssignableFrom(t);
+                }));
             }
 
-            foreach (var type in types)
+            foreach (var type in routeInterceptors)
             {
-                services.AddSingleton(typeof(IInterceptRoutes), type);
+                services.AddScoped(typeof(IInterceptRoutes), type);
+            }
+
+            foreach (var type in modules)
+            {
+                services.AddSingleton(typeof(RequestsModule), type);
             }
         }
     }
