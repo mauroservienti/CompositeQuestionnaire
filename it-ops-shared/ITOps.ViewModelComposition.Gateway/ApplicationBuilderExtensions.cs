@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using ITOps.ViewModelComposition.Modules;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 
@@ -13,6 +15,12 @@ namespace ITOps.ViewModelComposition.Gateway
             var routeBuilder = new RouteBuilder(app);
             routes?.Invoke(routeBuilder);
 
+            var allModules = app.ApplicationServices.GetServices<RequestsModule>();
+            foreach (var module in allModules)
+            {
+                module.RegisterRoutes(routeBuilder);
+            }
+
             app.UseRouter(routeBuilder.Build());
         }
 
@@ -20,7 +28,7 @@ namespace ITOps.ViewModelComposition.Gateway
         {
             app.RunCompositionGateway(routes =>
             {
-                routes.MapComposableGet( template: "{controller}/{id:int?}");
+                routes.MapComposableGet(template: "{controller}/{id:int?}");
                 routes.MapRoute("{*NotFound}", context =>
                 {
                     context.Response.StatusCode = StatusCodes.Status404NotFound;

@@ -32,10 +32,10 @@ namespace ITOps.ViewModelComposition.Mvc
 
             foreach (var type in types)
             {
-                builder.Services.AddSingleton(typeof(IHandleResult), type);
+                builder.Services.AddScoped(typeof(IHandleResult), type);
             }
 
-            builder.Services.Configure<MvcOptions>(options => 
+            builder.Services.Configure<MvcOptions>(options =>
             {
                 options.Filters.Add(typeof(CompositionActionFilter));
             });
